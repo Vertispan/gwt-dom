@@ -16,12 +16,21 @@
 
 package org.gwtproject.canvas.dom.client;
 
+import jsinterop.annotations.JsOverlay;
+import jsinterop.annotations.JsPackage;
+import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
 import org.gwtproject.core.client.JavaScriptObject;
 
 /**
  * Represents a {@link CssColor}, {@link CanvasGradient}, or
  * {@link CanvasPattern} that is used for stroke and fill.
  */
+@JsType(
+        isNative = true,
+        name = "?",
+        namespace = JsPackage.GLOBAL
+)
 public class FillStrokeStyle extends JavaScriptObject {
 
   /**
@@ -46,15 +55,16 @@ public class FillStrokeStyle extends JavaScriptObject {
    * 
    * @return The type of the object.
    */
-  public final native int getType() /*-{
+  @JsOverlay
+  public final int getType() {
     // Unwrap the color to check its type when in dev mode (when isScript == false)
-    var unwrappedColor = @com.google.gwt.core.client.GWT::isScript()() ? this : this[0];
-    if (unwrappedColor && typeof(unwrappedColor) == 'string') {
-      return @org.gwtproject.canvas.dom.client.FillStrokeStyle::TYPE_CSSCOLOR;
-    } else if (typeof(this.addColorStop) == 'function') {
-      return @org.gwtproject.canvas.dom.client.FillStrokeStyle::TYPE_GRADIENT;
+    if (Js.typeof(this).equals("string")) {
+      return TYPE_CSSCOLOR;
+    } else if (this instanceof CanvasGradient) {
+      return TYPE_GRADIENT;
     } else {
-      return @org.gwtproject.canvas.dom.client.FillStrokeStyle::TYPE_PATTERN;
+      assert this instanceof CanvasPattern : "Expected pattern, unknown type " + this.toString();
+      return TYPE_PATTERN;
     }
-  }-*/;
+  }
 }
