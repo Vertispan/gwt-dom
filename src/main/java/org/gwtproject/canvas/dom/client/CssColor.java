@@ -18,6 +18,7 @@ package org.gwtproject.canvas.dom.client;
 import jsinterop.annotations.JsOverlay;
 import jsinterop.annotations.JsPackage;
 import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
 
 /**
  * CSS Color object.
@@ -60,9 +61,9 @@ public class CssColor extends FillStrokeStyle {
    * @return a {@link CssColor} object
    */
   @JsOverlay
-  public static final native CssColor make(String cssColor) /*-{
-    return cssColor;
-  }-*/;
+  public static final CssColor make(String cssColor) {
+    return Js.uncheckedCast(cssColor);
+  }
 
   protected CssColor() {
   }

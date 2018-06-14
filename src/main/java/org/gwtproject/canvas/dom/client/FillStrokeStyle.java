@@ -28,7 +28,7 @@ import org.gwtproject.core.client.JavaScriptObject;
  */
 @JsType(
         isNative = true,
-        name = "?",
+        name = "Object",
         namespace = JsPackage.GLOBAL
 )
 public class FillStrokeStyle extends JavaScriptObject {
@@ -36,16 +36,19 @@ public class FillStrokeStyle extends JavaScriptObject {
   /**
    * Constant for CssColor style.
    */
+  @JsOverlay
   public static final int TYPE_CSSCOLOR = 0;
 
   /**
    * Constant for Gradient style.
    */
+  @JsOverlay
   public static final int TYPE_GRADIENT = 1;
 
   /**
    * Constant for Pattern style.
    */
+  @JsOverlay
   public static final int TYPE_PATTERN = 2;
 
   protected FillStrokeStyle() { }
