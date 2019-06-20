@@ -19,6 +19,7 @@ import com.google.gwt.junit.DoNotRunWith;
 import com.google.gwt.junit.Platform;
 import com.google.gwt.junit.client.GWTTestCase;
 import org.gwtproject.dom.client.Style.*;
+import org.gwtproject.dom.style.shared.HasCssName;
 
 import static org.gwtproject.dom.client.Style.Unit.*;
 
@@ -284,19 +285,17 @@ public class StyleTest extends GWTTestCase {
     Style style = div.getStyle();
 
     style.setTextJustify(TextJustify.AUTO);
-    assertEquals(TextJustify.AUTO, style.getTextOverflow());
+    assertEquals(TextJustify.AUTO, style.getTextJustify());
     style.setTextJustify(TextJustify.DISTRIBUTE);
-    assertEquals(TextJustify.DISTRIBUTE, style.getTextOverflow());
-    style.setTextJustify(TextJustify.INTER_CLUSTER);
-    assertEquals(TextJustify.INTER_CLUSTER, style.getTextOverflow());
+    assertEquals(TextJustify.DISTRIBUTE, style.getTextJustify());
     style.setTextJustify(TextJustify.INTER_IDEOGRAPH);
-    assertEquals(TextJustify.INTER_IDEOGRAPH, style.getTextOverflow());
+    assertEquals(TextJustify.INTER_IDEOGRAPH, style.getTextJustify());
     style.setTextJustify(TextJustify.INTER_WORD);
-    assertEquals(TextJustify.INTER_WORD, style.getTextOverflow());
+    assertEquals(TextJustify.INTER_WORD, style.getTextJustify());
     style.setTextJustify(TextJustify.KASHIDA);
-    assertEquals(TextJustify.KASHIDA, style.getTextOverflow());
+    assertEquals(TextJustify.KASHIDA, style.getTextJustify());
     style.setTextJustify(TextJustify.NONE);
-    assertEquals(TextJustify.NONE, style.getTextOverflow());
+    assertEquals(TextJustify.NONE, style.getTextJustify());
     style.clearTextJustify();
     assertEmpty(style.getTextJustify());
   }
